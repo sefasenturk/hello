@@ -5,6 +5,7 @@ class HelloConan(ConanFile):
     version = "0.1"
     settings = "os", "compiler", "build_type", "arch"
     exports = "*"
+    generators = "cmake" # Not required, but useful
 
     def build(self):
         cmake = CMake(self.settings)

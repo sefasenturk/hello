@@ -1,15 +1,14 @@
 PROJECT(MyHello)
 cmake_minimum_required(VERSION 2.8)
 
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+# this will do quite a useful setup and checks for us
+# Not necessary, but convenient
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
 
-SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
-SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
-SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
-    
-ADD_LIBRARY(hello STATIC hello.cpp)
+# No need to specify STATIC, that is the default. Not specifying
+# later allow to build SHARED
+ADD_LIBRARY(hello hello.cpp)
 #ADD_EXECUTABLE(greet main.cpp)
 #TARGET_LINK_LIBRARIES(greet hello)
 #IF (WIN32 AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
